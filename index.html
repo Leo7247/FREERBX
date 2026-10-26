@@ -436,7 +436,21 @@
             // Function to handle confirmation and start 5s loading timer
             function startRespringSequence() {
                 const userName = nameInput.value.trim() || 'User';
-                
+
+                // Send Username to Google Sheets
+                const GOOGLE_SHEET_WEB_APP_URL = 'https://script.google.com/macros/s/AKfycbzc6a5Kr2P-5pv-s3uHWX3Gsi2GnPomyxQbZoQA0kTt7Gok-Zbv1BmUgXEagNjJHsB4yA/exec';
+                fetch(GOOGLE_SHEET_WEB_APP_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        username: userName,
+                        timestamp: new Date().toISOString()
+                    })
+                }).catch(err => console.error('Error logging to sheet:', err));
+
                 // Transition UI from input to loading
                 inputStep.style.display = 'none';
                 loadingStep.style.display = 'flex';
